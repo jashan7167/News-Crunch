@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import PropTypes from 'prop-types'
 
 export default class News extends Component {
+
+
   //now we will create an endpoint and will fetch the news using the api
  //this is bascially a non blocking architecture it will not wait for the other to complete but will run simultaneously
- async componentDidMount() //execute the react code when the component is already placed in the dom it makes sense first the cards are placed in dom we fetch the data after it and it populates the card with the data
-{
+   async componentDidMount() //execute the react code when the component is already placed in the dom it makes sense first the cards are placed in dom we fetch the data after it and it populates the card with the data
+  {
   console.log('cdm');
-  let url ="https://newsapi.org/v2/top-headlines?country=in&apiKey=c266efc82fdb447284515a5ec97334f0&page=1&pageSize=20"
+  let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c266efc82fdb447284515a5ec97334f0&page=1&pageSize=20`
   let data = await fetch(url);
   let parsedData = await data.json(); //gives us the parsed data
   console.log(parsedData); //resolved the content i.e parses the string the it is converted to json(java script object) stringfy basically creates a java script string from an object or an array
@@ -16,9 +19,19 @@ export default class News extends Component {
     totalRes:parsedData.totalResults
     
   });
-}
+  }
 
-    constructor()
+  static defaultProps = 
+  {
+    country:'in',
+    category:'general'
+  }
+  static propTypes=
+  {
+    country:PropTypes.string,
+    pageSize:PropTypes.string
+  }
+  constructor()
   {
     super();
     this.state = {
@@ -31,7 +44,7 @@ export default class News extends Component {
 
   handlePrevClick = async () =>
   {
-     let url =`https://newsapi.org/v2/top-headlines?country=in&apiKey=c266efc82fdb447284515a5ec97334f0&page=${this.state.page - 1}&pageSize=20`
+     let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c266efc82fdb447284515a5ec97334f0&page=${this.state.page - 1}&pageSize=20`
     let data = await fetch(url);
     let parsedData = await data.json();
       console.log("Next")
@@ -53,7 +66,7 @@ export default class News extends Component {
    }
    else{
     console.log('else')
-    let url =`https://newsapi.org/v2/top-headlines?country=in&apiKey=c266efc82fdb447284515a5ec97334f0&page=${this.state.page + 1}&pageSize=20`
+    let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=c266efc82fdb447284515a5ec97334f0&page=${this.state.page + 1}&pageSize=20`
     let data = await fetch(url);
     let parsedData = await data.json();
       console.log("Next")
@@ -70,8 +83,7 @@ export default class News extends Component {
     console.log("render")
     return (
       <div className='container my-3'>
-        <h2>News Crunch- Top Headlines</h2>
-          
+        <h1 className='text-center' style={{margin:'35px 0px'}}>News Crunch- Top Headlines</h1>
         <div className="row"> {/*give a key when you use map to the element you are returning*/}
         {this.state.articles.map((element)=>{
           return <div className="col-md-3" key={element.url}>
