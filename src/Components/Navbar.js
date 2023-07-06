@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Link} from "react-router-dom"
 export default class Navbar extends Component {
 
   render() {
@@ -13,19 +13,15 @@ export default class Navbar extends Component {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/about">About</a>
-        </li>
-          <li className="nav-link"><a href="" className="nav-link">business</a></li>
-          <li className="nav-link"><a href="" className="nav-link">entertainment</a></li>
-          <li className="nav-link"><a href="" className="nav-link">general</a></li>
-          <li className="nav-link"><a href="" className="nav-link">health</a></li>
-          <li className="nav-link"><a href="" className="nav-link">science</a></li>
-          <li className="nav-link"><a href="" className="nav-link">sports</a></li>
-          <li className="nav-link"><a href="" className="nav-link">technology</a></li>
+          <li className="nav-item"><Link className="nav-link active" aria-current="page" To=".general">Home</Link></li>
+          <li className="nav-item"> <Link className="nav-link" to="/about">About</Link></li>
+          <li className="nav-link"><Link to="/business" className="nav-link">Business</Link></li>
+          <li className="nav-link"><Link to="/entertainment" className="nav-link">Entertainment</Link></li>
+          <li className="nav-link"><Link to="/general" className="nav-link">General</Link></li>
+          <li className="nav-link"><Link to="/health" className="nav-link">Health</Link></li>
+          <li className="nav-link"><Link to="science" className="nav-link">Science</Link></li>
+          <li className="nav-link"><Link to="/sports" className="nav-link">Sports</Link></li>
+          <li className="nav-link"><Link to="/technology" className="nav-link">Technology</Link></li>
           </ul>
     </div>
   </div>
