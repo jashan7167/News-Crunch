@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 
-export class NewsItem extends Component {
-  
-
-  render() {
-    let {title,description,imageUrl,newsUrl,author,published,source} = this.props;
+const NewsItem = (props) =>
+{
+    let {title,description,imageUrl,newsUrl,author,published,source} = props;
     return (
       <div>
         <div className="card">
         <div className="card-body">
-        <span className="badge rounded-pill bg-primary" style={{display:'flex',justifyContent:'flex-end',position:'absolute',right:'0'}}>
+        <span className="badge rounded-pill bg-primary" style={{display:'flex',justifyContent:'flex-end',position:'absolute',right:''}}>
     {source}
     <span class="visually-hidden">unread messages</span>
   </span>
@@ -23,7 +21,7 @@ export class NewsItem extends Component {
       </div>
     )
   }
-}
+
 
 
 export default NewsItem
