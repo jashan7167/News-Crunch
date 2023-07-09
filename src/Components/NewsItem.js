@@ -9,7 +9,7 @@ const NewsItem = (props) =>
         <div className="card-body">
         <span className="badge rounded-pill bg-primary" style={{display:'flex',justifyContent:'flex-end',position:'absolute',right:''}}>
     {source}
-    <span class="visually-hidden">unread messages</span>
+    <span className="visually-hidden">unread messages</span>
   </span>
         <img src={imageUrl} className="card-img-top" alt="..."/>
         <h5 className="card-title">{title}</h5>

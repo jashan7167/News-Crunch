@@ -33,6 +33,7 @@ const News = (props) => {
   };
   useEffect(() => {
     updateNews();
+    // eslint-disable-next-line
   }, []);
 
   const handlePrevClick = async () => {
@@ -71,13 +72,13 @@ const News = (props) => {
   };
 
   const fetchMoreData = async () => {
-    setPage((prevPage) => prevPage + 1); // Use callback to get the updated page value
-    // Fetch the data using the updated page value
     let url = `https://newsapi.org/v2/top-headlines?country=${
+      // Fetch the data using the updated page value
       props.country
     }&category=${props.category}&apiKey=${props.apiKey}&page=${
       page + 1
     }&pageSize=20`;
+    setPage((prevPage) => prevPage + 1); // Use callback to get the updated page value
     let data = await fetch(url);
     let parsedData = await data.json();
     setArticles((prevArticles) => prevArticles.concat(parsedData.articles));
@@ -86,7 +87,7 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className="text-center" style={{ margin: "35px 0px" }}>
+      <h1 className="text-center" style={{ margin: "9px 0px", }}>
         Top Headlines - {capitalize(props.category)}
       </h1>
       <InfiniteScroll
@@ -102,7 +103,7 @@ const News = (props) => {
             {/*give a key when you use map to the element you are returning*/}
             {articles.map((element) => {
               return (
-                <div className="col-md-3" key={element.id}>
+                <div className="col-md-3" key={element.url}>
                   <NewsItem
                     title={element.title ? element.title.slice(0, 45) : " "}
                     description={
