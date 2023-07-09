@@ -8,7 +8,7 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  // document.title = `News Crunch - ${capitalize(props.category)}`
+ 
   //now we will create an endpoint and will fetch the news using the api
   //this is bascially a non blocking architecture it will not wait for the other to complete but will run simultaneously
   //let parsedData = await data.json(); gives us the parsed data
@@ -32,6 +32,7 @@ const News = (props) => {
     props.setProgress(100);
   };
   useEffect(() => {
+    document.title = `News Crunch - ${capitalize(props.category)}`
     updateNews();
     // eslint-disable-next-line
   }, []);
